@@ -12,7 +12,7 @@ class Munchies extends Component {
     authenticate(props) {
         const authId = "812a4304f1be42cbbaeb4513b9fd53a0";
         const redirectPage = "http://localhost:3000/"
-        
+
         return (
             <a href={"https://api.instagram.com/oauth/authorize/?client_id="+authId+"&redirect_uri="+redirectPage+"&response_type=token"}>
                 <button>authorize instagram</button>
@@ -42,10 +42,10 @@ class Munchies extends Component {
             dataType: "jsonp",
         }).then(function(response) {
             const result = response.data;
-
+            console.log(result);
             const resultMedia = result.map((imageObj) =>
                 <li key={imageObj.id}>
-                    {imageObj.filter}
+                     <img src={imageObj.images.standard_resolution.url} />
                 </li>
             );
             console.log(resultMedia);
