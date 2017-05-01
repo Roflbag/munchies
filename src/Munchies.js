@@ -26,10 +26,11 @@ class Munchies extends Component {
         );
     }
 
-    getImage() {
-        const tag = "hi";
-        const url = "https://api.instagram.com/v1/tags/" + tag + "/media/recent?access_token=" + this.token;
+    getImage(token) {
+        const tag = "photography";
+        const url = "https://api.instagram.com/v1/tags/" + tag + "/media/recent?access_token=" + token;
         var self = this;
+        console.log("token");
 
         $.ajax(url, {
             type: "GET",
@@ -50,18 +51,15 @@ class Munchies extends Component {
         })
     }
 
-    // displayImage(list) {
-    //     console.log("!");
-    //     return (
-    //         <ul>{list}</ul>
-    //     );
-    // }
 
     render() {
         return (
             <div>
                 {this.authenticate()}
-                {this.getImage()}
+                <button onClick={this.getImage(this.token)}>
+                    Click me
+                </button>
+                <ul>{this.state.imageMedia}</ul>
             </div>
         );
     }
